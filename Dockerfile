@@ -9,7 +9,7 @@ ADD VERSION .
 # BUILD ZTNCUI IN FIRST STAGE
 WORKDIR /build
 RUN apt update -y && \
-    apt install curl gnupg2 ca-certificates zip unzip build-essential git g++ --no-install-recommends -y && \
+    apt install curl gnupg2 ca-certificates zip unzip build-essential git --no-install-recommends -y && \
     curl -sL -o node_inst.sh https://deb.nodesource.com/setup_${NODEJS_MAJOR}.x && \
     bash node_inst.sh && \
     apt install -y nodejs --no-install-recommends && \
@@ -51,7 +51,7 @@ RUN mkdir -p binaries && \
 # START RUNNER
 FROM debian:bullseye-slim AS runner
 RUN apt update -y && \
-    apt install curl gnupg2 ca-certificates unzip supervisor net-tools procps --no-install-recommends -y && \
+    apt install curl gnupg2 ca-certificates unzip supervisor net-tools procps g++ --no-install-recommends -y && \
     groupadd -g 2222 zerotier-one && \
     useradd -u 2222 -g 2222 zerotier-one && \
     curl -sL -o ztone.sh https://install.zerotier.com && \
