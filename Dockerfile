@@ -21,7 +21,7 @@ RUN apt update -y && \
     pkg -c ./package.json -t "node${NODEJS_MAJOR}-linux-x64" bin/www -o ztncui && \
     zip -r /build/artifact.zip ztncui node_modules/argon2/build/Release && \
     cd /opt && git clone -v https://github.com/zerotier/ZeroTierOne.git && \
-    cd / && git clone -v https://github.com/kukudemajia/ztncui-aio.git app
+    cd / && git clone -v https://github.com/kukudemajia/docker-zerotier-planet.git app
 
 # BUILD GO UTILS
 FROM golang:bullseye AS argong
