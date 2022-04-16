@@ -16,4 +16,5 @@ cd /opt/ZeroTierOne/attic/world/ && sh build.sh
 sleep 5s
 
 cd /opt/ZeroTierOne/attic/world/ && ./mkworld
+mkdir -p /app/bin
 cp world.bin /var/lib/zerotier-one/planet && cp world.bin /app/bin/planet
