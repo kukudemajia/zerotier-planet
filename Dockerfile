@@ -77,6 +77,7 @@ COPY init.sh /init.sh
 COPY supervisord.conf /etc/supervisord.conf
 
 RUN chmod 0755 /bin/gosu && \
+    chmod 0755 /init.sh && \
     chmod 0755 /usr/local/bin/minica && \
     chmod 0755 /usr/local/bin/argon2g && \
     chmod 0755 /usr/local/bin/gfileserv && \
