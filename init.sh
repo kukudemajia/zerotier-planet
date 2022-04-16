@@ -6,6 +6,7 @@ if [ -f "$planetFile" ]; then
 fi
 
 cd /var/lib/zerotier-one && zerotier-idtool initmoon identity.public > moon.json
+curl https://httpbin.org/ip > /app/patch/patch.json
 cd /app/patch && python3 patch.py
 cd /var/lib/zerotier-one && zerotier-idtool genmoon moon.json && mkdir -p moons.d && cp ./*.moon ./moons.d
 cd /opt/ZeroTierOne/attic/world/ && sh build.sh
