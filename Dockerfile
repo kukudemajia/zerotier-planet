@@ -19,9 +19,7 @@ RUN apt update -y && \
     cd ztncui/src && \
     npm install && \
     pkg -c ./package.json -t "node${NODEJS_MAJOR}-linux-x64" bin/www -o ztncui && \
-    zip -r /build/artifact.zip ztncui node_modules/argon2/build/Release && \
-    cd /opt && git clone -v https://github.com/zerotier/ZeroTierOne.git && \
-    cd / && git clone -v https://github.com/kukudemajia/docker-zerotier-planet.git app
+    zip -r /build/artifact.zip ztncui node_modules/argon2/build/Release
 
 # BUILD GO UTILS
 FROM golang:bullseye AS argong
@@ -59,7 +57,9 @@ RUN apt update -y && \
     rm -f ztone.sh && \
     apt clean -y && \
     rm -rf /var/lib/zerotier-one && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/* && \
+    cd /opt && git clone -v https://github.com/zerotier/ZeroTierOne.git && \
+    cd / && git clone -v https://github.com/kukudemajia/docker-zerotier-planet.git app
 
 WORKDIR /opt/key-networks/ztncui
 COPY --from=builder /build/artifact.zip .
@@ -73,6 +73,7 @@ COPY --from=argong /buildsrc/binaries/fileserv /usr/local/bin/gfileserv
 
 COPY start_zt1.sh /start_zt1.sh
 COPY start_ztncui.sh /start_ztncui.sh
+COPY init.sh /init.sh
 COPY supervisord.conf /etc/supervisord.conf
 
 RUN chmod 0755 /bin/gosu && \
