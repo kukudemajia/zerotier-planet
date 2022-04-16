@@ -49,7 +49,7 @@ RUN mkdir -p binaries && \
 # START RUNNER
 FROM debian:bullseye-slim AS runner
 RUN apt update -y && \
-    apt install curl gnupg2 ca-certificates unzip supervisor net-tools procps g++ --no-install-recommends -y && \
+    apt install curl gnupg2 ca-certificates unzip supervisor net-tools procps g++ git --no-install-recommends -y && \
     groupadd -g 2222 zerotier-one && \
     useradd -u 2222 -g 2222 zerotier-one && \
     curl -sL -o ztone.sh https://install.zerotier.com && \
