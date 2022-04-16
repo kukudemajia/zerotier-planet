@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  multi:
+  build:
     runs-on: ubuntu-latest
     steps:
       -
@@ -31,4 +31,4 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: |
-            kukudemajia/ztncui:latest
+            kukudemajia/zerotier-planet:latest
